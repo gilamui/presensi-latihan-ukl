@@ -1,41 +1,53 @@
-# 📘 Aplikasi Presensi Online (Backend)
+# 🚀 Sistem Aplikasi Absensi Online (RESTful API)
 
-## 🧩 Fungsi Program
-Program ini berfungsi untuk mengelola **presensi (kehadiran)** siswa atau karyawan secara online melalui RESTful API.  
-Fungsi utamanya meliputi:
-- Menambahkan dan mengelola data pengguna (siswa/karyawan).  
-- Login dengan autentikasi **JWT Token**.  
-- Mencatat kehadiran pengguna (hadir, izin, alpha).  
-- Melihat riwayat dan rekap kehadiran setiap pengguna.  
+## ✨ Deskripsi & Tujuan Proyek
+Sistem ini merupakan **RESTful API** yang dirancang untuk mengelola **presensi (kehadiran) online** bagi karyawan atau siswa. Tujuannya adalah menyediakan solusi pencatatan kehadiran yang **terstruktur, aman, dan mudah diakses** menggunakan teknologi modern.
 
-Seluruh data tersimpan di **database MySQL** menggunakan **ORM Prisma** dan diproses melalui **framework NestJS**.
+### 🎯 Fungsi Utama
+* **Manajemen Pengguna:** Menambahkan dan mengelola data pengguna (karyawan/siswa).
+* **Autentikasi Aman:** Implementasi mekanisme **Login dengan JSON Web Token (JWT)** untuk keamanan sesi.
+* **Pencatatan Kehadiran:** Mencatat status kehadiran harian (Hadir, Izin, Alpha).
+* **Pelaporan:** Menyediakan fitur untuk melihat riwayat kehadiran dan rekapitulasi data (total dan persentase kehadiran).
 
----
-
-## ⚙️ Cara Kerja Program
-1. **User Registration** — Pengguna baru ditambahkan melalui endpoint `/api/users`.  
-2. **Login** — Pengguna login di `/api/auth/login` untuk mendapatkan token autentikasi (JWT).  
-3. **Presensi** — Pengguna melakukan absensi di `/api/attendance` dengan status hadir/izin/alfa.  
-4. **Riwayat Presensi** — Data kehadiran dapat dilihat di `/api/attendance/history/{user_id}`.  
-5. **Rekap Kehadiran** — Sistem menghitung total kehadiran dan persentase di `/api/attendance/summary/{user_id}`.  
-
-Program diuji menggunakan **Postman**, dengan format request & response JSON.
+### 🛠️ Tumpukan Teknologi (Tech Stack)
+* **Backend Framework:** **NestJS** (Node.js)
+* **Database:** **MySQL**
+* **ORM:** **Prisma** (Sebagai ORM untuk interaksi database)
+* **Pengujian:** **Postman** (Digunakan untuk pengujian endpoint dan validasi format JSON)
 
 ---
 
-## 📸 Hasil Output (Screenshot Postman)
+## ⚙️ Alur Kerja & Endpoint API
+Program berjalan dengan alur kerja yang terstruktur melalui serangkaian endpoint API:
 
-| No | Endpoint | Method | Deskripsi | Screenshot |
-|----|-----------|---------|------------|-------------|
-| 1 | `/api/users` | POST | Menambah pengguna baru | ![Tambah User](./output/regist%20user.png) |
-| 2 | `/api/auth/login` | POST | Login dan menghasilkan token JWT | ![Login](./output/login.png) |
-| 3 | `/api/attendance` | POST | Melakukan presensi pengguna | ![Presensi](./output/presensi.png) |
-| 4 | `/api/attendance/summary/1` | GET | Melihat rekap kehadiran bulanan | ![Rekap](./output/rekap.png) |
-| 5 | `/api/attendance/history/1` | GET | Melihat history kehadiran | ![History](./output/lihat%20riwayat.png) |
+| Tahap | Deskripsi | Endpoint | Metode | Catatan Penting |
+| :--- | :--- | :--- | :--- | :--- |
+| **1. Registrasi** | Pendaftaran pengguna baru. | `/api/users` | `POST` | Data pengguna disimpan. |
+| **2. Autentikasi** | Pengguna login untuk mendapatkan **Token JWT**. | `/api/auth/login` | `POST` | Token ini digunakan pada setiap permintaan terautentikasi. |
+| **3. Presensi** | Mencatat status kehadiran (Hadir/Izin/Alpha). | `/api/attendance` | `POST` | Memerlukan Token JWT. |
+| **4. Riwayat** | Melihat detail riwayat kehadiran per pengguna. | `/api/attendance/history/{user_id}` | `GET` | Filter berdasarkan ID pengguna. |
+| **5. Rekapitulasi** | Menampilkan total dan persentase kehadiran (bulanan). | `/api/attendance/summary/{user_id}` | `GET` | Menyediakan ringkasan performa kehadiran. |
 
 ---
 
-## 👨‍💻 Pembuat
-**Nama:** David Filbert  
-**Kelas:** XI RPL 1
-**Framework:** NestJS + Prisma + MySQL
+## 📸 Hasil Validasi Endpoint (Postman)
+
+| No | Endpoint | Metode | Deskripsi | Dokumentasi Visual |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | `/api/users` | POST | Pendaftaran Pengguna Baru |  |
+| 2 | `/api/auth/login` | POST | Login & Perolehan Token JWT | 
+
+[Image of Login]
+ |
+| 3 | `/api/attendance` | POST | Pencatatan Presensi Harian |  |
+| 4 | `/api/attendance/summary/1` | GET | Rekapitulasi Kehadiran Bulanan |  |
+| 5 | `/api/attendance/history/1` | GET | Riwayat Kehadiran Terperinci |  |
+
+---
+
+## 👨‍💻 Informasi Pengembang
+* **Nama:** Mattew Gilam Kyle Marante
+* **Kelas:** XI RPL 2
+* **Teknologi:** NestJS, Prisma, MySQL
+
+---
